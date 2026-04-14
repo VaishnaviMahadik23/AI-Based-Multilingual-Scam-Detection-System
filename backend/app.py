@@ -2,11 +2,12 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import re
 from backend.model import predict_scam
+from deep_translator import GoogleTranslator # pyright: ignore[reportMissingImports]
 
 app = Flask(__name__)
 CORS(app)
 
-translator = Translator()
+translator = GoogleTranslator()
 
 SCAM_KEYWORDS = [
     "urgent",
