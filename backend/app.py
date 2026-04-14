@@ -82,11 +82,10 @@ def analyze():
 
     if original_message:
         try:
-            detected = translator.detect(original_message)
-            detected_lang = getattr(detected, "lang", "unknown") or "unknown"
+            message = original_message.lower()
+            detected_lang = "en"
+            translated_input = original_message
 
-            if detected_lang != "en":
-                translated_input = translator.translate(original_message, dest="en").text
         except Exception as err:
             app.logger.debug(f"Translation input failed: {err}")
             detected_lang = "unknown"
@@ -119,27 +118,22 @@ def analyze():
     # =========================
     scam_probability = 0
 
-    # 🚨 STEP 3: strong keyword rule
-    if len(found_keywords) >= 2:
-        scam_probability += 30
-        # ⚠️ STEP 3.5: medium keyword rule
-    elif len(found_keywords) == 1:
-        scam_probability += 20
-
-    # AI MODEL
+    # AI MODEL (main weight)
     prediction, ai_probability = predict_scam(message)
     ai_score = int(ai_probability * 100)
+    scam_probability += ai_score * 0.6   # increased AI importance
 
-    scam_probability += ai_score * 0.4
-
-    # keyword weight
-    scam_probability += len(found_keywords) * 25
+    # keyword weight (reduced)
+    if len(found_keywords) >= 2:
+        scam_probability += 20
+    elif len(found_keywords) == 1:
+        scam_probability += 10
 
     # link weight
     scam_probability += len(found_links) * 5
 
     # suspicious link weight
-    scam_probability += len(suspicious_links) * 20
+    scam_probability += len(suspicious_links) * 15
 
     # cap
     scam_probability = min(int(scam_probability), 100)
@@ -150,9 +144,9 @@ def analyze():
     
 
     # RESULT (FIXED)
-    if scam_probability < 30:
+    if scam_probability < 40:
         result_key = "safe"
-    elif scam_probability < 70:
+    elif scam_probability < 75:
         result_key = "suspicious"
     else:
         result_key = "danger"
@@ -181,9 +175,6 @@ def analyze():
     }
 
     return jsonify(result)
-
-#if __name__ == "__main__":
-#    app.run(debug=True)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=10000)

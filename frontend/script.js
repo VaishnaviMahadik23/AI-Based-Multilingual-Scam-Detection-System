@@ -1,22 +1,25 @@
 async function analyzeMessage() {
     const message = document.getElementById("message").value;
-    const lang = document.getElementById("language").value;
+
+    if (!message) {
+        alert("Please enter a message");
+        return;
+    }
+
+    document.getElementById("output").innerHTML = "Analyzing...";
 
     try {
-        const response = await fetch("http://127.0.0.1:5000/analyze", {
+        const response = await fetch("https://ai-based-multilingual-scam-detection.onrender.com/analyze", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ message: message, lang: lang })
+            body: JSON.stringify({
+                message: message
+            })
         });
 
         const data = await response.json();
-
-        if (!message) {
-            alert("Please enter a message");
-            return;
-        }
 
         let className = "";
 
@@ -41,4 +44,8 @@ async function analyzeMessage() {
         console.error(error);
         alert("Error connecting to server");
     }
+}
+
+function setExample(text) {
+    document.getElementById("message").value = text;
 }

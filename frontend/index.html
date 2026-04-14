@@ -17,7 +17,14 @@
     <textarea id="message" placeholder="Paste SMS / WhatsApp message here..."></textarea>
 
     <div class="controls">
-        <select id="language">
+
+        <button onclick="setExample('Meeting at 5pm tomorrow')">Try Safe</button>
+
+        <button onclick="setExample('Your account needs verification, please login now')">Try Suspicious</button>
+
+        <button onclick="setExample('You won a lottery! Click here to claim prize')">Try Scam</button>
+        
+         <select id="language">
             <option value="en">🌐 English</option>
             <option value="hi">🇮🇳 Hindi</option>
             <option value="mr">🇮🇳 Marathi</option>
