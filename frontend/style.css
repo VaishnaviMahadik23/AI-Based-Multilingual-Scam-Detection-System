@@ -1,0 +1,149 @@
+/* RESET */
+* {
+    box-sizing: border-box;
+}
+
+/* BODY */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #66d6ea, #b993de);
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* FIX for mobile */
+    min-height: 100vh;
+
+    padding: 20px;
+}
+
+/* CONTAINER */
+.container {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+
+    width: 100%;
+    max-width: 500px; /* responsive width */
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+/* TITLE */
+h1 {
+    margin-bottom: 5px;
+    font-size: 24px;
+}
+
+.subtitle {
+    color: gray;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+/* TEXTAREA */
+textarea {
+    width: 100%;
+    min-height: 120px;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    resize: none;
+    font-size: 14px;
+}
+
+/* CONTROLS */
+.controls {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap; /* important */
+}
+
+/* SELECT */
+select {
+    flex: 1;
+    min-width: 120px;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background: #f1f1f1;
+    cursor: pointer;
+}
+
+/* BUTTON */
+button {
+    flex: 1;
+    min-width: 120px;
+
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #667eea;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #5a67d8;
+}
+
+/* RESULT */
+.result {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: left;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* COLORS */
+.safe {
+    background: #e6fffa;
+    border-left: 5px solid #38b2ac;
+}
+
+.suspicious {
+    background: #fffbea;
+    border-left: 5px solid #d69e2e;
+}
+
+.danger {
+    background: #ffe6e6;
+    border-left: 5px solid #e53e3e;
+}
+
+/* ANIMATION */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 📱 MOBILE OPTIMIZATION */
+@media (max-width: 480px) {
+    .container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    textarea {
+        min-height: 100px;
+    }
+
+    .controls {
+        flex-direction: column;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    select {
+        width: 100%;
+    }
+}

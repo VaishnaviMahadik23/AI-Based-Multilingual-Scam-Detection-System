@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Scam Detector</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🛡️ AI Scam Detector</h1>
+    <p class="subtitle">Protect yourself from fraud messages</p>
+
+    <textarea id="message" placeholder="Paste SMS / WhatsApp message here..."></textarea>
+
+    <div class="controls">
+        <select id="language">
+            <option value="en">🌐 English</option>
+            <option value="hi">🇮🇳 Hindi</option>
+            <option value="mr">🇮🇳 Marathi</option>
+        </select>
+
+        <button onclick="analyzeMessage()">Analyze</button>
+    </div>
+
+    <div id="output"></div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
