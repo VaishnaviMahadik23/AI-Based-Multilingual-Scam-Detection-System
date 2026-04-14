@@ -10,7 +10,7 @@ BASE_DIR = os.path.dirname(__file__)
 # ===============================
 file_path = os.path.join(BASE_DIR, "spam.csv")
 
-df = pd.read_csv(file_path)
+df = pd.read_csv(file_path, encoding='latin-1')
 
 # Keep only required columns
 df = df[['v1', 'v2']]
