@@ -3,12 +3,14 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
 import os
 
+BASE_DIR = os.path.dirname(__file__)
+
 # ===============================
 # LOAD DATASET
 # ===============================
-file_path = os.path.join(os.path.dirname(__file__), "spam.csv")
+file_path = os.path.join(BASE_DIR, "spam.csv")
 
-df = pd.read_csv(file_path, encoding="latin-1")
+df = pd.read_csv(file_path)
 
 # Keep only required columns
 df = df[['v1', 'v2']]
